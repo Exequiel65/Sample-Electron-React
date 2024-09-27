@@ -5,8 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && tsc ./main.ts --outDir ./dist && mv ./dist/main.js ./dist/main.cjs",
     "lint": "eslint .",
+    "electron-start": "tsc ./main.ts --outDir ./dist && mv ./dist/main.js ./dist/main.cjs &&  electron ./dist/main.cjs",
+    "build-pre-exe": "electron-builder",
+    "build-exe": "electron-builder --win --x64",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -15,15 +18,19 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
+    "@types/electron": "^1.6.10",
+    "@types/node": "^22.7.4",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
+    "electron": "^32.1.2",
     "eslint": "^9.9.0",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.9",
     "globals": "^15.9.0",
-    "typescript": "^5.5.3",
+    "typescript": "^5.6.2",
     "typescript-eslint": "^8.0.1",
     "vite": "^5.4.1"
   }
 }
+  
